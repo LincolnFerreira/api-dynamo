@@ -10,16 +10,17 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgres://api_dynamo_user:wdtGalQAbPJwiiqVTg81RD7YTxXhikQf@dpg-cpginhkf7o1s738fi3n0-a.oregon-postgres.render.com/api_dynamo"
 }
 
 model User {
-  id        Int      @id @default(autoincrement()) @map("id")
-  email     String   @unique @map("email")
-  password  String   @map("password")
-  name      String?  @map("name")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id          Int      @id @default(autoincrement()) @map("id")
+  email       String   @unique @map("email")
+  password    String   @map("password")
+  name        String?  @map("name")
+  secretParam String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
-  @@map("users")
+  // @@map("users")
 }
