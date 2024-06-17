@@ -49,7 +49,10 @@ export class AuthService {
 
       return this.generateToken(user);
     }
-    throw new HttpException('Unauthorized', HttpStatus.FORBIDDEN);
+    throw new HttpException(
+      `Unauthorized ${loginDto.secretParam}`,
+      HttpStatus.FORBIDDEN,
+    );
   }
 
   private generateToken(user: any) {
