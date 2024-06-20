@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthenticateModule } from './authenticate/authenticate.module';
+import { QuantidadesDeDrenagemModule } from './quantidades_de_drenagem/quantidades_de_drenagem.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AuthenticateModule } from './authenticate/authenticate.module';
     }),
     PrismaModule,
     AuthenticateModule,
+    QuantidadesDeDrenagemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
