@@ -45,9 +45,14 @@ export class AuthService {
       user.secretParam == loginDto.secretParam &&
       this.isValidMACAddress(loginDto.secretParam)
     ) {
+      console.log(loginDto.secretParam);
+
       return this.generateToken(user);
     }
-    throw new HttpException('Unauthorized', HttpStatus.FORBIDDEN);
+    throw new HttpException(
+      `Unauthorized ${loginDto.secretParam}`,
+      HttpStatus.FORBIDDEN,
+    );
   }
 
   private generateToken(user: any) {
@@ -62,7 +67,6 @@ export class AuthService {
     const macFormat1 = /^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$/;
     const macFormat2 = /^([0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}$/;
     const macFormat3 = /^[0-9A-Fa-f]{12}$/;
-
     // Verifica se o MAC address corresponde a algum dos formatos válidos
     return macFormat1.test(mac) || macFormat2.test(mac) || macFormat3.test(mac);
   }
